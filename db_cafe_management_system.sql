@@ -25,29 +25,58 @@ CREATE TABLE `employee` (
   insert into employee(id, name, gender, join_date, address, phone_number, position, salary)
   values(1000, 'ADMIN', 'Male', '2021/10/10', 'Ha Noi', '0123456789', 'Manager', '15000000');
 
+drop table drinks;
 CREATE TABLE `drinks` (
-  `ID` int(11) NOT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
   `DrinksName` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `cost` int(11) NOT NULL
+  `cost` int NOT NULL,
+   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `drinks` (ID, DrinksName, cost) VALUES
-(4, 'Cà phê', 40000),
-(5, 'Bạc xỉu', 30000),
-(6, 'Cà phê đen', 20000),
-(7, 'Cà phê đá', 40000);
-select * from drinks;
+INSERT INTO `drinks` (DrinksName, cost) VALUES
+('Cà phê', 40000),
+('Bạc xỉu', 30000),
+('Cà phê đen', 20000),
+('Cà phê đá', 40000);
 
-CREATE TABLE `tables` (
-  `ID` int(11) NOT NULL,
+drop table tables;
+  CREATE TABLE `tables` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `note` text COLLATE utf8_unicode_ci,
-  `status` tinyint(4) NOT NULL
+  `status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `tables` (`ID`, `table_name`, `note`, `status`) VALUES
-(1, 'Bàn 1', '', 0),
-(2, 'Bàn 2', '', 0),
-(3, 'Bàn 3', '', 0),
-(4, 'Bàn 4', '', 0),
-(5, 'Bàn 5', '5 người', 0);
+INSERT INTO `tables` (`table_name`, `note`, `status`) VALUES
+('Bàn 1', '', 0),
+('Bàn 2', '', 0),
+('Bàn 3', '', 0),
+('Bàn 4', '', 0),
+('Bàn 5', '5 người', 0);
+
+drop table invoice;
+CREATE TABLE `invoice` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `account_ID` int NOT NULL,
+  `invoice_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tables_id` int NOT NULL,
+  `status` int NOT NULL,
+  `total_price` int NOT NULL DEFAULT '0',
+   PRIMARY KEY (`ID`),
+   CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`account_ID`) REFERENCES `account`(`id`),
+   CONSTRAINT `invoice_ibfk_2` FOREIGN KEY (`tables_id`) REFERENCES `tables`(`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+drop table orders;
+CREATE TABLE `orders` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `drinks_ID` int NOT NULL,
+  `count` int NOT NULL,
+  `invoice_ID` int NOT NULL,
+  PRIMARY KEY (`ID`),
+  FOREIGN KEY (`drinks_ID`) REFERENCES `drinks`(`id`),
+  FOREIGN KEY (`invoice_ID`) REFERENCES `invoice`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
