@@ -25,6 +25,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     DefaultTableModel myModel;
     public QuanLyNhanVien() {
         initComponents();
+        setTitle("Employee Management");
+        setLocationRelativeTo(this);
         myModel = new DefaultTableModel(headers, 0);
         new EmployeeDAO().loadDataToTable(myModel);
         tableInfo.setModel(myModel);
@@ -32,6 +34,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     
     public QuanLyNhanVien(AccountDAO accDAO) {
         initComponents();
+        setTitle("Employee Management");
+        setLocationRelativeTo(this);
         this.accDAO = accDAO;
         myModel = new DefaultTableModel(headers, 0);
         new EmployeeDAO().loadDataToTable(myModel);
@@ -222,6 +226,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
         });
 
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Go Back_50px.png"))); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +334,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(txtDate)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonFemale)
                             .addComponent(buttonMale)

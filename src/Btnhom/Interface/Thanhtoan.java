@@ -20,12 +20,16 @@ public class Thanhtoan extends javax.swing.JFrame {
     String[] headers = {"STT", "Nhân viên", "Tên bàn", "Tổng tiền", "Ngày thanh toán"};
     public Thanhtoan() {
         initComponents();
+        setTitle("Summary");
+        setLocationRelativeTo(this);
         tableModel = new DefaultTableModel(headers, 0);
         summaryTable.setModel(tableModel);
     }
     
     public Thanhtoan(AccountDAO accDAO) {
         initComponents();
+        setTitle("Summary");
+        setLocationRelativeTo(this);
         this.accDAO = accDAO;
         tableModel = new DefaultTableModel(headers, 0);
         summaryTable.setModel(tableModel);
@@ -53,6 +57,7 @@ public class Thanhtoan extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Summary");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Go Back_50px.png"))); // NOI18N
         jButton1.setText("Back");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +112,7 @@ public class Thanhtoan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );

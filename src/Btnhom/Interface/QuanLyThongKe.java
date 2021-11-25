@@ -21,6 +21,8 @@ public class QuanLyThongKe extends javax.swing.JFrame {
     private AccountDAO accDAO = new AccountDAO();
     public QuanLyThongKe() {
         initComponents();
+        setTitle("Summary Management");
+        setLocationRelativeTo(this);
         setDrinksCombobox();
         summaryButton.setEnabled(false);
         tableModelTables = new DefaultTableModel(headers1, 0);
@@ -34,6 +36,8 @@ public class QuanLyThongKe extends javax.swing.JFrame {
     
     public QuanLyThongKe(AccountDAO accDAO) {
         initComponents();
+        setTitle("Summary Management");
+        setLocationRelativeTo(this);
         this.accDAO = accDAO;
         setDrinksCombobox();
         summaryButton.setEnabled(false);
@@ -167,6 +171,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(table2);
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Go Back_50px.png"))); // NOI18N
         jButton3.setText("Back");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -271,7 +276,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(144, 144, 144)

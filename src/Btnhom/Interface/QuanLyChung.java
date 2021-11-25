@@ -10,10 +10,14 @@ public class QuanLyChung extends javax.swing.JFrame {
     
     public QuanLyChung() {
         initComponents();
+        setTitle("General Management");
+        setLocationRelativeTo(this);
     }
     
     public QuanLyChung(AccountDAO accDAO) {
         initComponents();
+        setTitle("General Management");
+        setLocationRelativeTo(this);
         this.accDAO = accDAO;
         txtHello.setText(String.format("Hello, %s!", accDAO.getAccount().getName()));
     }
@@ -40,6 +44,7 @@ public class QuanLyChung extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("General Management");
 
+        tableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/icons8-table-50.png"))); // NOI18N
         tableButton.setText("Table");
         tableButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tableButton.addActionListener(new java.awt.event.ActionListener() {
@@ -48,6 +53,7 @@ public class QuanLyChung extends javax.swing.JFrame {
             }
         });
 
+        drinksButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/drinks.png"))); // NOI18N
         drinksButton.setText("Drinks");
         drinksButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         drinksButton.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +62,7 @@ public class QuanLyChung extends javax.swing.JFrame {
             }
         });
 
+        orderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/order.png"))); // NOI18N
         orderButton.setText("Order");
         orderButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         orderButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +71,7 @@ public class QuanLyChung extends javax.swing.JFrame {
             }
         });
 
+        summaryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/icons8-money-bag-50.png"))); // NOI18N
         summaryButton.setText("Summary");
         summaryButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         summaryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +82,7 @@ public class QuanLyChung extends javax.swing.JFrame {
 
         txtHello.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        employeeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/tải xuống.png"))); // NOI18N
         employeeButton.setText("Employee");
         employeeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         employeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -115,48 +124,47 @@ public class QuanLyChung extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(summaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(112, 112, 112))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtHello, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(146, 146, 146))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(employeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                            .addComponent(summaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(42, 42, 42))))
+                .addGap(161, 161, 161)
+                .addComponent(employeeButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtHello, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(jLabel3)
                 .addGap(39, 39, 39)
                 .addComponent(employeeButton)
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tableButton)
                     .addComponent(drinksButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(summaryButton)
-                    .addComponent(orderButton))
+                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63))
         );
 

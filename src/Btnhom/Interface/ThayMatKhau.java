@@ -22,11 +22,15 @@ public class ThayMatKhau extends javax.swing.JFrame {
             
     public ThayMatKhau() {
         initComponents();
+        setTitle("Change Password");
+        setLocationRelativeTo(this);
     }
     
     public ThayMatKhau(AccountDAO accDAO) {
         this.accDAO = accDAO;
         initComponents();
+        setTitle("Change Password");
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -51,6 +55,7 @@ public class ThayMatKhau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Go Back_50px.png"))); // NOI18N
         backButton.setText("Back");
         backButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +133,7 @@ public class ThayMatKhau extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmButton)
                     .addComponent(txtUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
