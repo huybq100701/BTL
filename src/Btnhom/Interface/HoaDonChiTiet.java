@@ -4,6 +4,7 @@ import Btnhom.DAO.VouchersDAO;
 import Btnhom.DAO.*;
 import Btnhom.DTO.*;
 import java.util.List;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,6 +26,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         this.tableID = tableID;
         setBillDetails();
         setEventCombobox();
+        paymentButton.setEnabled(false);
     }
     
     public void setEventCombobox() {
@@ -234,7 +236,33 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
     private void paymentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentButtonActionPerformed
 
         if(new InvoicesDAO().Update(invoiceID, price) && new TablesDAO().updateStatus(0, tableID)) {
-            JOptionPane.showMessageDialog(this, "Payment successful!");
+            if(price >= 300000) {
+                String uuid = UUID.randomUUID().toString();
+                uuid.replace("-", "");
+                uuid = uuid.substring(0, 5);
+                while(new VouchersDAO().checkVouchers(uuid) != -1) {
+                    uuid = UUID.randomUUID().toString();
+                    uuid.replace("-", "");
+                    uuid = uuid.substring(0, 5);
+                }
+                new VouchersDAO().add(uuid, 20);
+                JOptionPane.showMessageDialog(this, "Payment successful!\nGot a voucher 20% discount: " + uuid);
+            }
+            else if(price >= 200000) {
+                String uuid = UUID.randomUUID().toString();
+                uuid.replace("-", "");
+                uuid = uuid.substring(0, 5);
+                while(new VouchersDAO().checkVouchers(uuid) != -1) {
+                    uuid = UUID.randomUUID().toString();
+                    uuid.replace("-", "");
+                    uuid = uuid.substring(0, 5);
+                }
+                new VouchersDAO().add(uuid, 10);
+                JOptionPane.showMessageDialog(this, "Payment successful!\nGot a voucher 10% discount: " + uuid);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Payment successful!");
+            }
         }
         new QuanLyThongKe().displayTable2(tableID);
         new QuanLyThongKe().displayTable1();
@@ -300,6 +328,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         price = totalPrice;
         String s = String.format("\n= %d\n", totalPrice);
         billTextField.setText(billTextField.getText() + s);
+        paymentButton.setEnabled(true);
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed

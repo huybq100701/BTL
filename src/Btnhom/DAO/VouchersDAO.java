@@ -27,6 +27,21 @@ public class VouchersDAO {
         return -1;
     }
     
+    public boolean add(String name, int discount) {
+        Connection con = DBUtility.openConnection();
+        try {
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO `vouchers`(`name`, `discount`) "
+                    + "VALUES(?, ?)");
+            pstmt.setString(1, name);
+            pstmt.setInt(2, discount);
+            int affectedRows = pstmt.executeUpdate();
+            if(affectedRows > 0) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(VouchersDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
     public void loadDataToTable(DefaultTableModel myModel) {
         Connection connection = DBUtility.openConnection();
         try {
