@@ -15,7 +15,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
     String[] headers1 = {"ID", "Table Name", "Status", "Note"};
     
     DefaultTableModel tableModelDrinks;
-    String[] headers2 = {"ID", "Drink Name", "Cost", "Quantity", "Summary"};
+    String[] headers2 = {"ID", "Drink Name", "Cost", "Quantity"};
     int totalPrice = 0;
 
     private AccountDAO accDAO = new AccountDAO();
@@ -58,7 +58,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         }
     }
     
-    private void displayTable1() {
+    void displayTable1() {
         tableModelTables.setRowCount(0); 
         List<Tables> listTable = TablesDAO.getInstance().LoadListTables();
         for (int i = 0; i < listTable.size(); i++) {
@@ -68,7 +68,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         }     
     }
     
-    private void displayTable2(int tableID) {
+    void displayTable2(int tableID) {
         tableModelDrinks.setRowCount(0); 
         new MenuDAO().loadDataToTable(tableModelDrinks, tableID);
     }
@@ -84,10 +84,10 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         drinksCombobox = new javax.swing.JComboBox<>();
         countSpinner = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        sizeLabel = new javax.swing.JLabel();
+        sizeCombobox = new javax.swing.JComboBox<>();
+        toppingLabel = new javax.swing.JLabel();
+        toppingCombobox = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         table2 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
@@ -135,34 +135,34 @@ public class QuanLyThongKe extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Size");
+        sizeLabel.setText("Size");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Choose size--", "M", "L", "XL", " " }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        sizeCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "L", "XL", " " }));
+        sizeCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                sizeComboboxActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Topping");
+        toppingLabel.setText("Topping");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Choose topping--", "Bubble", "Jelly" }));
+        toppingCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No topping", "Bubble", "Jelly" }));
 
         table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "Drink Name", "Cost", "Quantity", "Summary"
+                "ID", "Drink Name", "Quantity", "Cost"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Long.class, java.lang.Integer.class, java.lang.Long.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Long.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -211,9 +211,9 @@ public class QuanLyThongKe extends javax.swing.JFrame {
                             .addGap(45, 45, 45)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
+                                    .addComponent(toppingLabel)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(toppingCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
@@ -221,9 +221,9 @@ public class QuanLyThongKe extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(countSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
+                                            .addComponent(sizeLabel)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(sizeCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(73, 73, 73)
                                     .addComponent(addButton)))
                             .addGap(0, 0, Short.MAX_VALUE)))
@@ -262,15 +262,15 @@ public class QuanLyThongKe extends javax.swing.JFrame {
                                     .addComponent(countSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(sizeLabel)
+                                    .addComponent(sizeCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addButton)
                                 .addGap(22, 22, 22)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(toppingLabel)
+                            .addComponent(toppingCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -297,9 +297,9 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void sizeComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeComboboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_sizeComboboxActionPerformed
 
     private void summaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summaryButtonActionPerformed
         int row = table1.getSelectedRow();
@@ -308,20 +308,26 @@ public class QuanLyThongKe extends javax.swing.JFrame {
             String tableName = table1.getValueAt(row, 1).toString();
             tableID = new TablesDAO().getIDByName(tableName);
             int invoiceID = new InvoicesDAO().GetUncheckInvoiceByTableId(tableID);
-            int totalPrice = new OrdersDAO().totalPrice(invoiceID);
-            if(new InvoicesDAO().Update(invoiceID, totalPrice) && new TablesDAO().updateStatus(0, tableID)) {
-                JOptionPane.showMessageDialog(this, "Payment successful!");
-                new TablesDAO().updateStatus(0, tableID);
-            }
-            displayTable2(tableID);
-            displayTable1();
+//            int totalPrice = new OrdersDAO().totalPrice(invoiceID);
+//            if(new InvoicesDAO().Update(invoiceID, totalPrice) && new TablesDAO().updateStatus(0, tableID)) {
+//                //JOptionPane.showMessageDialog(this, "Payment successful!");
+//                //new TablesDAO().updateStatus(0, tableID);
+//                HoaDonChiTiet hdct = new HoaDonChiTiet(accDAO, invoiceID);
+//                hdct.setVisible(true);
+//                dispose();
+//            }
+//            displayTable2(tableID);
+//            displayTable1();
+              HoaDonChiTiet hdct = new HoaDonChiTiet(accDAO, invoiceID, tableID);
+              hdct.setVisible(true);
+              dispose();
         }
         else JOptionPane.showMessageDialog(this, "Choose a table to payment!");
     }//GEN-LAST:event_summaryButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // add a invoice
-        if(countSpinner.getValue().toString().equals("0")) {
+        if(Integer.parseInt(countSpinner.getValue().toString()) < 0) {
             JOptionPane.showMessageDialog(this, "Quantity must be greater than 0!");
             return;
         }
@@ -339,7 +345,9 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         int drinkID = new DrinksDAO().getIDByName(drinksCombobox.getItemAt(drinksCombobox.getSelectedIndex()));
         int invoiceID = new InvoicesDAO().GetUncheckInvoiceByTableId(tableID);
         int count = Integer.parseInt(countSpinner.getValue().toString());
-        if(new OrdersDAO().Insert(drinkID, invoiceID, count)) {
+        String size = sizeCombobox.getItemAt(sizeCombobox.getSelectedIndex());
+        String topping = toppingCombobox.getItemAt(toppingCombobox.getSelectedIndex());
+        if(new OrdersDAO().Insert(drinkID, invoiceID, count, size, topping)) {
             new TablesDAO().updateStatus(1, tableID);
             summaryButton.setEnabled(true);
         }
@@ -399,16 +407,16 @@ public class QuanLyThongKe extends javax.swing.JFrame {
     private javax.swing.JSpinner countSpinner;
     private javax.swing.JComboBox<String> drinksCombobox;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> sizeCombobox;
+    private javax.swing.JLabel sizeLabel;
     private javax.swing.JButton summaryButton;
     private javax.swing.JTable table1;
     private javax.swing.JTable table2;
+    private javax.swing.JComboBox<String> toppingCombobox;
+    private javax.swing.JLabel toppingLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,6 +32,7 @@ public class QuanLyBan extends javax.swing.JFrame {
     public QuanLyBan(AccountDAO accDAO) {
         this.accDAO = accDAO;
         initComponents();
+        soban.setText("Bàn ");
         setTitle("Table Management");
         setLocationRelativeTo(this);
         tableModel = new DefaultTableModel();
@@ -107,6 +108,12 @@ public class QuanLyBan extends javax.swing.JFrame {
         jLabel2.setText("Số bàn");
 
         jLabel3.setText("Ghi chú");
+
+        soban.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobanActionPerformed(evt);
+            }
+        });
 
         ghichu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,6 +295,10 @@ public class QuanLyBan extends javax.swing.JFrame {
     private void ghichuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghichuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ghichuActionPerformed
+
+    private void sobanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sobanActionPerformed
 
     /**
      * @param args the command line arguments

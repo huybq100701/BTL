@@ -32,7 +32,7 @@ public class OrdersDAO {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Orders orders = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+                Orders orders = new Orders(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getString(6));
                 list.add(orders);
             }
         } catch (SQLException ex) {
@@ -41,13 +41,15 @@ public class OrdersDAO {
         return list;
     }
 
-    public Boolean Insert(int drinkId, int invoiceId, int count) {
+    public Boolean Insert(int drinkId, int invoiceId, int count, String size, String topping) {
         Connection con = DBUtility.openConnection();
         try {
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO orders(drinks_ID, count, invoice_ID) VALUES (?,?,?)");
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO orders(drinks_ID, count, invoice_ID, size, topping) VALUES (?,?,?,?,?)");
             pstmt.setInt(1, drinkId);
             pstmt.setInt(2, count);
             pstmt.setInt(3, invoiceId);
+            pstmt.setString(4, size);
+            pstmt.setString(5, topping);
             int i = pstmt.executeUpdate();
             if (i > 0) {
                 return true;
@@ -61,14 +63,20 @@ public class OrdersDAO {
     public int totalPrice(int invoiceId) {
         Connection con = DBUtility.openConnection();
         try {
-            PreparedStatement pstmt = con.prepareStatement("SELECT `drinks_ID`,`count` FROM `orders` WHERE `invoice_ID` = ?");
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM `orders` WHERE `invoice_ID` = ?");
             pstmt.setInt(1, invoiceId);
             ResultSet rs = pstmt.executeQuery();
             int totalPrice = 0;
-            if (rs.next()) {
-                int price = new DrinksDAO().getPriceByID(rs.getInt(1));
-                int count = rs.getInt(2);
-                totalPrice += price * count;
+            while (rs.next()) {
+                int price = new DrinksDAO().getPriceByID(rs.getInt("drinks_id"));
+                int count = rs.getInt("count");
+                String size = rs.getString("size");
+                String topping = rs.getString("topping");
+                int x = price * count;
+                if(size.equals("L")) x *= 1.2;
+                else if(size.equals("XL")) x *= 1.4;
+                if(!topping.equals("No topping")) x += 10000;
+                totalPrice += x;
             }
             return totalPrice;
         } catch (SQLException ex) {

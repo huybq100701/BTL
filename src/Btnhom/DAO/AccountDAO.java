@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Btnhom.DAO;
 import Btnhom.Utilities.*;
 import Btnhom.DTO.*;
@@ -9,10 +5,7 @@ import java.sql.*;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Admin
- */
+
 public class AccountDAO {
     private Account account = new Account();
     

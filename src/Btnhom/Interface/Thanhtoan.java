@@ -38,8 +38,8 @@ public class Thanhtoan extends javax.swing.JFrame {
     
     public void displayTable() {
         ArrayList<Integer> invoicesIdList = new InvoicesDAO().invoicesIdList();
-        for(Integer i: invoicesIdList) {
-            new InvoicesDAO().loadDataToTable(tableModel, i, accDAO.getAccount().getId());
+        for(int i = 1; i <= invoicesIdList.size(); i++) {
+            new InvoicesDAO().loadDataToTable(tableModel, i, invoicesIdList.get(i - 1), accDAO.getAccount().getId());
         }
     }
 

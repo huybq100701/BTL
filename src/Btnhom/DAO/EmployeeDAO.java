@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.*;
 import javax.swing.table.DefaultTableModel;
-/**
- *
- * @author Admin
- */
+
+
 public class EmployeeDAO {
     private Employee employee = new Employee();
     

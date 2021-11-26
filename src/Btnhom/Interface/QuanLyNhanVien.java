@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Btnhom.Interface;
 import Btnhom.DAO.*;
 import java.awt.event.*;
@@ -13,13 +9,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
 
-/**
- *
- * @author Admin
- */
 public class QuanLyNhanVien extends javax.swing.JFrame {
-
-    
     private AccountDAO accDAO = new AccountDAO();
     String[] headers = {"ID", "Name", "Gender", "Join Date", "Address", "Phone number", "Position", "Salary"};
     DefaultTableModel myModel;
@@ -228,6 +218,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Go Back_50px.png"))); // NOI18N
         backButton.setText("Back");
+        backButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);

@@ -100,7 +100,7 @@ public class InvoicesDAO {
         return false;
     }
     
-    public void loadDataToTable(DefaultTableModel myModel, int invoiceID, int accID) {
+    public void loadDataToTable(DefaultTableModel myModel, int num, int invoiceID, int accID) {
         Connection connection = DBUtility.openConnection();
         try {
             String sql = "SELECT `employee`.`name`, `tables`.`table_name`, `invoice`.`total_price`, `invoice`.`invoice_date` "
@@ -112,11 +112,10 @@ public class InvoicesDAO {
             pstmt.setInt(1, invoiceID);
             pstmt.setInt(2, accID);
             ResultSet rs = pstmt.executeQuery();
-            int i = 1;
             while(rs.next()) {
                 Vector v = new Vector();
                 Invoices in = new Invoices();
-                in.setNum(i++);
+                in.setNum(num);
                 in.setEmployeeName(rs.getString("name"));
                 in.setTableName(rs.getString("table_name"));
                 in.setTotalPrice(rs.getInt("total_price"));

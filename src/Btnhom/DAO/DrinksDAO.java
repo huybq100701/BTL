@@ -53,6 +53,21 @@ public class DrinksDAO {
         return -1;
     }
     
+    public String getNameByID(int id) {
+        Connection con = DBUtility.openConnection();
+        try {
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM `drinks` WHERE `id` = ?");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                return rs.getString(2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DrinksDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+    
     public int getPriceByID(int id) {
         Connection con = DBUtility.openConnection();
         try {

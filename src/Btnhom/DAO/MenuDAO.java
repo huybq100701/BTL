@@ -34,7 +34,7 @@ public class MenuDAO {
     public void loadDataToTable(DefaultTableModel myModel, int id) {
         Connection connection = DBUtility.openConnection();
         try {
-            String sql = "SELECT `drinks`.`DrinksName`, `orders`.`count`, `drinks`.`cost`, `orders`.`count`*`drinks`.`cost` AS totalPrice FROM `orders`, `invoice`, `drinks` WHERE `orders`.`invoice_ID` = `invoice`.`ID` AND `orders`.`drinks_ID` = `drinks`.`ID` AND `invoice`.`status` = 0 AND `invoice`.`tables_id` = ?";
+            String sql = "SELECT `drinks`.`DrinksName`, `orders`.`count`, `drinks`.`cost` FROM `orders`, `invoice`, `drinks` WHERE `orders`.`invoice_ID` = `invoice`.`ID` AND `orders`.`drinks_ID` = `drinks`.`ID` AND `invoice`.`status` = 0 AND `invoice`.`tables_id` = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
@@ -46,13 +46,11 @@ public class MenuDAO {
                 m.setDrinkName(rs.getString("DrinksName"));
                 m.setCount(rs.getInt("count"));
                 m.setPrice(rs.getInt("cost"));
-                m.setTotalPrice(rs.getInt("totalPrice"));
                 
                 v.add(m.getNum());
                 v.add(m.getDrinkName());
                 v.add(m.getCount());
                 v.add(m.getPrice());
-                v.add(m.getTotalPrice());
                 
                 myModel.addRow(v);
             }
