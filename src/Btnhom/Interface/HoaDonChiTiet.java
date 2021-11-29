@@ -36,6 +36,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         setBillDetails();
         setEventCombobox();
         paymentButton.setEnabled(false);
+        OKButton.setEnabled(false);
     }
     
     private void setStyle() {
@@ -310,12 +311,13 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         price = totalPrice;
         String s = String.format("\n= %d\n", totalPrice);
         billTextField.setText(billTextField.getText() + s);
-        paymentButton.setEnabled(true);
+        OKButton.setEnabled(true);
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
         // TODO add your handling code here:
         exchangeButton.setText(String.valueOf(Integer.parseInt(receivedButton.getText()) - price));
+        paymentButton.setEnabled(true);
     }//GEN-LAST:event_OKButtonActionPerformed
 
     private void eventComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboboxActionPerformed
