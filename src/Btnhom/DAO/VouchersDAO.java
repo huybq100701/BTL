@@ -1,6 +1,5 @@
 package Btnhom.DAO;
 
-
 import Btnhom.DAO.*;
 import Btnhom.DTO.*;
 import Btnhom.Utilities.DBUtility;
@@ -13,6 +12,18 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class VouchersDAO {
+    public boolean deleteVouchers(String voucher) {
+        Connection con = DBUtility.openConnection();
+        try {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM `vouchers` WHERE `name` = ?");
+            pstmt.setString(1, voucher);
+            int affectedRows = pstmt.executeUpdate();
+            if(affectedRows > 0) return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     public int checkVouchers(String voucher) {
         Connection con = DBUtility.openConnection();
         try {

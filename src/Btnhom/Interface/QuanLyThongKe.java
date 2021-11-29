@@ -3,6 +3,7 @@ package Btnhom.Interface;
 import Btnhom.DAO.*;
 import Btnhom.DTO.*;
 import Btnhom.Utilities.DBUtility;
+import java.awt.Color;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
@@ -36,6 +37,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
     
     public QuanLyThongKe(AccountDAO accDAO) {
         initComponents();
+        setStyle();
         setTitle("Summary Management");
         setLocationRelativeTo(this);
         this.accDAO = accDAO;
@@ -48,6 +50,10 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         tableModelDrinks = new DefaultTableModel(headers2, 0);
         table2.setModel(tableModelDrinks);
         //displayTable2();
+    }
+    
+    private void setStyle() {
+        addButton.setBackground(Color.decode("#a5c3cf"));
     }
     
     public void setDrinksCombobox() {
@@ -95,6 +101,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        sizeLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,8 +148,8 @@ public class QuanLyThongKe extends javax.swing.JFrame {
                 drinksComboboxMouseEntered(evt);
             }
         });
-        getContentPane().add(drinksCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 183, -1, -1));
-        getContentPane().add(countSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 184, -1, -1));
+        getContentPane().add(drinksCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
+        getContentPane().add(countSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, -1));
 
         sizeLabel.setText("Size");
         getContentPane().add(sizeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 214, -1, -1));
@@ -219,13 +226,16 @@ public class QuanLyThongKe extends javax.swing.JFrame {
                 addButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
+        getContentPane().add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Screenshot 2021-11-29 170436.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 390, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Screenshot 2021-11-29 170436.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, -1));
+
+        sizeLabel1.setText("Size");
+        getContentPane().add(sizeLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 214, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -269,13 +279,18 @@ public class QuanLyThongKe extends javax.swing.JFrame {
     }//GEN-LAST:event_summaryButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        int row = table1.getSelectedRow();
+        if(row == -1) {
+            JOptionPane.showMessageDialog(this, "Choose a table to add order!");
+            return;
+        }
         // add a invoice
-        if(Integer.parseInt(countSpinner.getValue().toString()) < 0) {
+        if(Integer.parseInt(countSpinner.getValue().toString()) <= 0) {
             JOptionPane.showMessageDialog(this, "Quantity must be greater than 0!");
             return;
         }
         int accountID = accDAO.getAccount().getId();
-        int row = table1.getSelectedRow();
+        row = table1.getSelectedRow();
         int tableID = 0;
         if(row >= 0) {
             String tableName = table1.getValueAt(row, 1).toString();
@@ -362,6 +377,7 @@ public class QuanLyThongKe extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> sizeCombobox;
     private javax.swing.JLabel sizeLabel;
+    private javax.swing.JLabel sizeLabel1;
     private javax.swing.JButton summaryButton;
     private javax.swing.JTable table1;
     private javax.swing.JTable table2;

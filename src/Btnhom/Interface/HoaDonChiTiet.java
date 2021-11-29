@@ -3,6 +3,10 @@ package Btnhom.Interface;
 import Btnhom.DAO.VouchersDAO;
 import Btnhom.DAO.*;
 import Btnhom.DTO.*;
+import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.List;
 import java.util.UUID;
 import javax.swing.JOptionPane;
@@ -23,6 +27,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
 
     public HoaDonChiTiet(AccountDAO accDAO, int invoiceID, int tableID) {
         initComponents();
+        setStyle();
         setTitle("Bill Detail");
         setLocationRelativeTo(this);
         this.accDAO = accDAO;
@@ -31,6 +36,14 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         setBillDetails();
         setEventCombobox();
         paymentButton.setEnabled(false);
+    }
+    
+    private void setStyle() {
+        this.getContentPane().setBackground(Color.decode("#b2dbd5"));
+        billTextField.setBackground(Color.decode("#ebb582"));
+        applyVoucherButton.setBackground(Color.decode("#a5c3cf"));
+        applyEventButton.setBackground(Color.decode("#a5c3cf"));
+        OKButton.setBackground(Color.decode("#a5c3cf"));
     }
     
     public void setEventCombobox() {
@@ -64,6 +77,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         resetVoucherButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,7 +87,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         billTextField.setText("                                    Bill Details\n");
         jScrollPane1.setViewportView(billTextField);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 310, 360));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 310, 320));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -180,10 +194,18 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
                 updateButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 173, -1, -1));
+        getContentPane().add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Screenshot 2021-11-29 164757.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, -1));
+
+        jButton1.setText("Print");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -224,6 +246,9 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         QuanLyThongKe qltk = new QuanLyThongKe(accDAO);
         qltk.setVisible(true);
         dispose();
+        if(!voucherTextField.getText().equals("")) {
+            new VouchersDAO().deleteVouchers(voucherTextField.getText());
+        }
     }//GEN-LAST:event_paymentButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -249,9 +274,9 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
     }//GEN-LAST:event_applyVoucherButtonActionPerformed
 
     private void resetVoucherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetVoucherButtonActionPerformed
-        // TODO add your handling code here:
         applyVoucherButton.setText("Apply");
         applyVoucherButton.setEnabled(true);
+        voucherTextField.setText("");
         billTextField.setText(setBillDetails());
         discount1 = 0;
     }//GEN-LAST:event_resetVoucherButtonActionPerformed
@@ -261,7 +286,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         int discount = new EventDAO().getDiscountByName(event);
         applyEventButton.setText("Applied");
         applyEventButton.setEnabled(false);
-        String s = String.format("Voucher: - %d", discount) + "%\n";
+        String s = String.format("Event: - %d", discount) + "%\n";
         discount2 = discount;
         billTextField.setText(billTextField.getText() + s);
     }//GEN-LAST:event_applyEventButtonActionPerformed
@@ -272,8 +297,10 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         billTextField.setText(setBillDetails());
         
         String voucher = voucherTextField.getText();
-        String s = String.format("Voucher: - %d", new VouchersDAO().checkVouchers(voucher)) + "%\n";
-        billTextField.setText(billTextField.getText() + s);
+        if(!voucher.equals("")) {
+            String s = String.format("Voucher: - %d", new VouchersDAO().checkVouchers(voucher)) + "%\n";
+            billTextField.setText(billTextField.getText() + s);
+        }
         discount2 = 0;
     }//GEN-LAST:event_resetEventButtonActionPerformed
 
@@ -295,11 +322,31 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_eventComboboxActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            File file = new File("file.txt");
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(billTextField.getText());
+            bw.close();
+            fw.close();
+            JOptionPane.showMessageDialog(this, "Data exported");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public String setBillDetails() {
         List<Orders> orders = new OrdersDAO().ListOrder(invoiceID);
-        String display = "";
+        String display = "**********CHILLIE COFFEE & TEA**********\n";
+        String employee = accDAO.getAccount().getName();
+        display += ("Employee: " + employee + "\n\n");
         for(int i = 0; i < orders.size(); i++) {
-            display += "Drink " + (i + 1) + "\n" ;
+            display += ((i + 1) + ".\n");
             Orders o = orders.get(i);
             int stt = i + 1;
             String drinkName = new DrinksDAO().getNameByID(o.getDrinksId());
@@ -366,6 +413,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
     private javax.swing.JTextArea billTextField;
     private javax.swing.JComboBox<String> eventCombobox;
     private javax.swing.JTextField exchangeButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

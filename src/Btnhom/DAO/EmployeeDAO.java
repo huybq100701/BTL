@@ -7,7 +7,6 @@ import java.util.Vector;
 import java.util.logging.*;
 import javax.swing.table.DefaultTableModel;
 
-
 public class EmployeeDAO {
     private Employee employee = new Employee();
     
@@ -46,11 +45,14 @@ public class EmployeeDAO {
         try {
             if(new AccountDAO().hasAccount(id)) {
                 new AccountDAO().deleteByEmployeeId(id);
+                return true;
             }
             PreparedStatement pstmt = connection.prepareStatement("DELETE FROM employee WHERE id = ?");
             pstmt.setInt(1, id);
             int affectedRows = pstmt.executeUpdate();
-            if(affectedRows > 0) return true;
+            if(affectedRows > 0) {
+                return true;
+            }
         } catch (SQLException e) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
         }

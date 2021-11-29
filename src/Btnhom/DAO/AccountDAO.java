@@ -5,7 +5,6 @@ import java.sql.*;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
 
-
 public class AccountDAO {
     private Account account = new Account();
     

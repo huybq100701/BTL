@@ -2,6 +2,7 @@ package Btnhom.Interface;
 
 import Btnhom.DAO.*;
 import Btnhom.DTO.*;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class QuanLyChung extends javax.swing.JFrame {
@@ -15,11 +16,16 @@ public class QuanLyChung extends javax.swing.JFrame {
     }
     
     public QuanLyChung(AccountDAO accDAO) {
+        setStyle();
         initComponents();
         setTitle("General Management");
         setLocationRelativeTo(this);
         this.accDAO = accDAO;
         txtHello.setText(String.format("Hello, %s!", accDAO.getAccount().getName()));
+    }
+    
+    private void setStyle() {
+        this.getContentPane().setBackground(Color.decode("#b2dbd5"));
     }
 
     @SuppressWarnings("unchecked")
@@ -55,7 +61,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 tableButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(tableButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 197, 133, -1));
+        getContentPane().add(tableButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 140, -1));
 
         drinksButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/drinks.png"))); // NOI18N
         drinksButton.setText("Drinks");
@@ -65,7 +71,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 drinksButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(drinksButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 195, 130, -1));
+        getContentPane().add(drinksButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 140, -1));
 
         orderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/order.png"))); // NOI18N
         orderButton.setText("Order");
@@ -75,7 +81,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 orderButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(orderButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 264, 133, 59));
+        getContentPane().add(orderButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 140, 59));
 
         summaryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/icons8-money-bag-50.png"))); // NOI18N
         summaryButton.setText("Summary");
@@ -85,7 +91,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 summaryButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(summaryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 264, -1, -1));
+        getContentPane().add(summaryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 140, -1));
 
         txtHello.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(txtHello, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 11, 97, 24));
@@ -98,7 +104,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 employeeButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(employeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+        getContentPane().add(employeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 140, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/2558944.png"))); // NOI18N
         jButton1.setText("Events");
@@ -107,7 +113,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 131, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 140, -1));
 
         Account.setText("Account");
         Account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

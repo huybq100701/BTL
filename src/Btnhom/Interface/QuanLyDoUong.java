@@ -4,6 +4,7 @@ package Btnhom.Interface;
 import Btnhom.DAO.*;
 import Btnhom.DTO.*;
 import Btnhom.Utilities.*;
+import java.awt.Color;
 import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,10 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.*;
 
-/**
- *
- * @author huybq
- */
 public class QuanLyDoUong extends javax.swing.JFrame {
     DefaultTableModel tableModel;
     int idSave = -1;
@@ -36,6 +33,7 @@ public class QuanLyDoUong extends javax.swing.JFrame {
     public QuanLyDoUong(AccountDAO accDAO) {
         this.accDAO = accDAO;
         initComponents();
+        setStyle();
         setTitle("Drinks Management");
         setLocationRelativeTo(this);
         tableModel = new DefaultTableModel();
@@ -46,15 +44,24 @@ public class QuanLyDoUong extends javax.swing.JFrame {
         displayTable();
     }
     
+    private void setStyle() {
+        this.getContentPane().setBackground(Color.decode("#b2dbd5"));
+        table.setBackground(Color.decode("#acbd78"));
+        drinkLabel.setForeground(Color.decode("#004d47"));
+        costLabel.setForeground(Color.decode("#004d47"));
+        add.setBackground(Color.decode("#a5c3cf"));
+        delete.setBackground(Color.decode("#f3d3b8"));
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        drinkLabel = new javax.swing.JLabel();
         drinkname = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        cost = new javax.swing.JTextField();
+        costLabel = new javax.swing.JLabel();
+        costText = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         backButton = new javax.swing.JButton();
@@ -69,15 +76,15 @@ public class QuanLyDoUong extends javax.swing.JFrame {
         jLabel1.setText("Drinks Management");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Drinks Name");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        drinkLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        drinkLabel.setText("Drinks Name");
+        getContentPane().add(drinkLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
         getContentPane().add(drinkname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 201, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Cost");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
-        getContentPane().add(cost, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 201, -1));
+        costLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        costLabel.setText("Cost");
+        getContentPane().add(costLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        getContentPane().add(costText, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 201, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,48 +160,30 @@ public class QuanLyDoUong extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        Connection con;
-        PreparedStatement pstmt;
-
-        if (idSave >= 0) {
-            con = DBUtility.openConnection();
-            try {
-                pstmt = con.prepareStatement("Delete from drinks where ID=?");
-                pstmt.setInt(1, idSave);
-                int i = pstmt.executeUpdate();
-                if (i > 0) {
-                    displayTable();
-                    idSave = -1;
-                    drinkname.setText("");
-                    cost.setText("");
-                    JOptionPane.showMessageDialog(null, "Delete Succesful!!");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Delete fail!!");
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(QuanLyDoUong.class.getName()).log(Level.SEVERE, null, ex);
+        int row = table.getSelectedRow();
+        if(row == -1) {
+            JOptionPane.showMessageDialog(this, "Choose drink to delete!");
+        }
+        else {
+            if(new DrinksDAO().delete(table.getValueAt(row, 1).toString())) {
+                JOptionPane.showMessageDialog(this, "Delete successful!");
+                drinkname.setText("");
+                costText.setText("");
+                displayTable();
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Seletet to Delete!!");
+            else JOptionPane.showMessageDialog(this, "Something went wrong!");
         }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        Connection con;
-        Statement stmt;
-
-        con = DBUtility.openConnection();
-        try {
-            stmt = con.createStatement();
-            int i = stmt.executeUpdate("INSERT INTO drinks(ID,DrinksName, cost) VALUES ('"+ "1"+"','"  + drinkname.getText() + "','" + Integer.parseInt(cost.getText())+ "')");
-            if (i > 0) {
-                displayTable();
-                JOptionPane.showMessageDialog(null, "Insert Succesful!!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Insert fail!!");
-            }
-        } catch (SQLException ex) {
-            System.out.println("Btnhom.Interface.QuanLyDoUong.addActionPerformed()");
+        String drinkName = drinkname.getText();
+        int cost = Integer.parseInt(costText.getText());
+        if(new DrinksDAO().add(drinkName, cost)) {
+            JOptionPane.showMessageDialog(this, "Add successful");
+            displayTable();
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Something went wrong");
         }
     }//GEN-LAST:event_addActionPerformed
 
@@ -205,7 +194,7 @@ public class QuanLyDoUong extends javax.swing.JFrame {
         List<Drinks> list = DrinksDAO.getInstance().GetListDrink();
         idSave = list.get(row).getId();
         drinkname.setText(tableModel.getValueAt(row, 1) + "");
-        cost.setText(tableModel.getValueAt(row, 2) + "");
+        costText.setText(tableModel.getValueAt(row, 2) + "");
     }//GEN-LAST:event_tableMouseClicked
 
     /**
@@ -249,13 +238,13 @@ public class QuanLyDoUong extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JButton backButton;
-    private javax.swing.JTextField cost;
+    private javax.swing.JLabel costLabel;
+    private javax.swing.JTextField costText;
     private javax.swing.JButton delete;
+    private javax.swing.JLabel drinkLabel;
     private javax.swing.JTextField drinkname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import Btnhom.DAO.*;
+import java.awt.Color;
 
 public class QuanLyBan extends javax.swing.JFrame {
     DefaultTableModel tableModel;
@@ -32,6 +33,7 @@ public class QuanLyBan extends javax.swing.JFrame {
     public QuanLyBan(AccountDAO accDAO) {
         this.accDAO = accDAO;
         initComponents();
+        setStyle();
         soban.setText("Bàn ");
         setTitle("Table Management");
         setLocationRelativeTo(this);
@@ -42,6 +44,12 @@ public class QuanLyBan extends javax.swing.JFrame {
         tableModel.addColumn("Note");
         table.setModel(tableModel);
         displayTable();
+    }
+    
+    private void setStyle() {
+        add.setBackground(Color.decode("#a5c3cf"));
+        delete.setBackground(Color.decode("#f3d3b8"));
+        edit.setBackground(Color.decode("#8593ae"));
     }
 
     @SuppressWarnings("unchecked")
@@ -139,7 +147,7 @@ public class QuanLyBan extends javax.swing.JFrame {
                 addActionPerformed(evt);
             }
         });
-        getContentPane().add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 342, -1, -1));
+        getContentPane().add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
 
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +155,7 @@ public class QuanLyBan extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 342, -1, -1));
+        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
         edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +163,7 @@ public class QuanLyBan extends javax.swing.JFrame {
                 editActionPerformed(evt);
             }
         });
-        getContentPane().add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 342, -1, -1));
+        getContentPane().add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Screenshot 2021-11-29 163335.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

@@ -2,6 +2,9 @@ package Btnhom.Interface;
 import Btnhom.DAO.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +27,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     
     public QuanLyNhanVien(AccountDAO accDAO) {
         initComponents();
+        setStyle();
         setTitle("Employee Management");
         setLocationRelativeTo(this);
         this.accDAO = accDAO;
@@ -32,7 +36,13 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         tableInfo.setModel(myModel);
     }
 
-    
+    private void setStyle() {
+        this.getContentPane().setBackground(Color.decode("#b2dbd5"));
+        addButton.setBackground(Color.decode("#a5c3cf"));
+        deleteButton.setBackground(Color.decode("#f3d3b8"));
+        updateButton.setBackground(Color.decode("#8593ae"));
+        searchButton.setBackground(Color.decode("#52958b"));
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,6 +76,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         buttonGroup1.add(buttonMale);
         buttonGroup1.add(buttonFemale);
@@ -269,7 +280,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         getContentPane().add(resetButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 499, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/unnamed.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, 110));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, -1, 110));
+
+        jButton1.setText("Print");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -391,7 +410,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             if(result == JOptionPane.YES_OPTION){
                int id = Integer.parseInt(myModel.getValueAt(row, 0).toString());
                if(new EmployeeDAO().delete(id)) {
-                    JOptionPane.showMessageDialog(this, "Delete successfully!");
+                    JOptionPane.showMessageDialog(this, "Delete successful!");
                     myModel.removeRow(row);
                 }
                else JOptionPane.showMessageDialog(this, "Something went wrong");
@@ -478,7 +497,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
          
             try {
                 if(authenticateUpdate() && new EmployeeDAO().update(id, name, gender, join_date, address, phone_number, position, salary)) {
-                    JOptionPane.showMessageDialog(new QuanLyNhanVien(), "Update successfully!");
+                    JOptionPane.showMessageDialog(new QuanLyNhanVien(), "Update successful!");
                     myModel = new DefaultTableModel(headers, 0);
                     new EmployeeDAO().loadDataToTable(myModel); 
                     tableInfo.setModel(myModel);
@@ -506,6 +525,30 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private void comboBoxSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxSearchActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            File file = new File("file.txt");
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("______________EMPLOYEE MANAGEMENT______________\n");
+            for(int i = 0; i < tableInfo.getRowCount(); i++) {
+                for(int j = 0; j < tableInfo.getColumnCount(); j++) {
+                    bw.write(String.valueOf(tableInfo.getModel().getValueAt(i, j)) + "    ");
+                }
+                bw.write("\n\n");
+            }
+            bw.close();
+            fw.close();
+            JOptionPane.showMessageDialog(this, "Data exported");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -551,6 +594,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxSearch;
     private javax.swing.JComboBox<String> comboboxPosition;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

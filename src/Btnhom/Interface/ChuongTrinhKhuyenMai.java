@@ -2,10 +2,10 @@ package Btnhom.Interface;
 
 import Btnhom.DAO.*;
 import Btnhom.DTO.*;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 public class ChuongTrinhKhuyenMai extends javax.swing.JFrame {
 
@@ -21,6 +21,7 @@ public class ChuongTrinhKhuyenMai extends javax.swing.JFrame {
 
     public ChuongTrinhKhuyenMai(AccountDAO accDAO) {
         initComponents();
+        setStyle();
         setTitle("Event");
         setLocationRelativeTo(this);
         myModel = new DefaultTableModel(headers, 0);
@@ -29,6 +30,15 @@ public class ChuongTrinhKhuyenMai extends javax.swing.JFrame {
         startTextField.setText("yyyy/MM/dd");
         endTextField.setText("yyyy/MM/dd");
         displayTable();
+    }
+    
+    private void setStyle() {
+        this.getContentPane().setBackground(Color.decode("#b2dbd5"));
+        vouchersButton.setBackground(Color.decode("#ffccbb"));
+        vouchersButton.setForeground(Color.GRAY);
+        addButton.setBackground(Color.decode("#a5c3cf"));
+        deleteButton.setBackground(Color.decode("#f3d3b8"));
+        updateButton.setBackground(Color.decode("#8593ae"));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -225,8 +235,8 @@ public class ChuongTrinhKhuyenMai extends javax.swing.JFrame {
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         eventTextField.setText("");
         discountTextField.setText("");
-        startTextField.setText("");
-        endTextField.setText("");
+        startTextField.setText("yyyy/MM/dd");
+        endTextField.setText("yyyy/MM/dd");
         displayTable();
     }//GEN-LAST:event_resetButtonActionPerformed
     private void displayTable() {

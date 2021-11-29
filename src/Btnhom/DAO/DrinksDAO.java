@@ -7,7 +7,6 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class DrinksDAO {
     
     private static DrinksDAO instance;
@@ -81,6 +80,39 @@ public class DrinksDAO {
             Logger.getLogger(DrinksDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
+    }
+    
+    public boolean add(String drinkName, int cost) {
+        Connection con;
+        con = DBUtility.openConnection();
+        try {
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO drinks(DrinksName, cost) VALUES (?, ?)");
+            pstmt.setString(1, drinkName);
+            pstmt.setInt(2, cost);
+            int i = pstmt.executeUpdate();
+            if (i > 0) {
+                return true;
+            } 
+        } catch (SQLException ex) {
+            System.out.println("Btnhom.Interface.QuanLyDoUong.addActionPerformed()");
+        }
+        return false;
+    }
+    
+    public boolean delete(String drinkName) {
+        Connection con;
+        con = DBUtility.openConnection();
+        try {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM drinks WHERE DrinksName = ?");
+            pstmt.setString(1, drinkName);
+            int i = pstmt.executeUpdate();
+            if (i > 0) {
+                return true;
+            } 
+        } catch (SQLException ex) {
+            System.out.println("Btnhom.Interface.QuanLyDoUong.addActionPerformed()");
+        }
+        return false;
     }
 }
 
