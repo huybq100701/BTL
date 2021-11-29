@@ -14,12 +14,16 @@ public class Vouchers extends javax.swing.JFrame {
     DefaultTableModel myModel;
     public Vouchers() {
         initComponents();
+        setTitle("Vouchers");
+        setLocationRelativeTo(this);
         myModel = new DefaultTableModel(headers, 0);
         displayTable();
     }
 
     public Vouchers(AccountDAO accDAO) {
         initComponents();
+        setTitle("Vouchers");
+        setLocationRelativeTo(this);
         this.accDAO = accDAO;
         myModel = new DefaultTableModel(headers, 0);
         displayTable();
@@ -59,7 +63,9 @@ public class Vouchers extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Go Back_50px.png"))); // NOI18N
         jButton1.setText("Back");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -84,7 +90,7 @@ public class Vouchers extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

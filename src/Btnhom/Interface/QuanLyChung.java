@@ -41,9 +41,11 @@ public class QuanLyChung extends javax.swing.JFrame {
         changePassMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("General Management");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("   General Management");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 41, 271, -1));
 
         tableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/icons8-table-50.png"))); // NOI18N
         tableButton.setText("Table");
@@ -53,6 +55,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 tableButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(tableButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 197, 133, -1));
 
         drinksButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/drinks.png"))); // NOI18N
         drinksButton.setText("Drinks");
@@ -62,6 +65,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 drinksButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(drinksButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 195, 130, -1));
 
         orderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/order.png"))); // NOI18N
         orderButton.setText("Order");
@@ -71,6 +75,7 @@ public class QuanLyChung extends javax.swing.JFrame {
                 orderButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(orderButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 264, 133, 59));
 
         summaryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/icons8-money-bag-50.png"))); // NOI18N
         summaryButton.setText("Summary");
@@ -80,8 +85,10 @@ public class QuanLyChung extends javax.swing.JFrame {
                 summaryButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(summaryButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 264, -1, -1));
 
         txtHello.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(txtHello, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 11, 97, 24));
 
         employeeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/tải xuống.png"))); // NOI18N
         employeeButton.setText("Employee");
@@ -91,13 +98,16 @@ public class QuanLyChung extends javax.swing.JFrame {
                 employeeButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(employeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/2558944.png"))); // NOI18N
         jButton1.setText("Events");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 131, -1));
 
         Account.setText("Account");
         Account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -127,54 +137,6 @@ public class QuanLyChung extends javax.swing.JFrame {
         jMenuBar1.add(Account);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txtHello, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(146, 146, 146))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(employeeButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(summaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(42, 42, 42))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtHello, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jLabel3)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(employeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tableButton)
-                    .addComponent(drinksButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(summaryButton)
-                    .addComponent(orderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63))
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

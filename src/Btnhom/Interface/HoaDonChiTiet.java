@@ -17,10 +17,14 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
             
     public HoaDonChiTiet() {
         initComponents();
+        setTitle("Bill Detail");
+        setLocationRelativeTo(this);
     }
 
     public HoaDonChiTiet(AccountDAO accDAO, int invoiceID, int tableID) {
         initComponents();
+        setTitle("Bill Detail");
+        setLocationRelativeTo(this);
         this.accDAO = accDAO;
         this.invoiceID = invoiceID;
         this.tableID = tableID;
@@ -59,176 +63,127 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         resetEventButton = new javax.swing.JButton();
         resetVoucherButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         billTextField.setColumns(20);
         billTextField.setRows(5);
-        billTextField.setText("                                                   Bill Details\n");
+        billTextField.setText("                                    Bill Details\n");
         jScrollPane1.setViewportView(billTextField);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 310, 360));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Apply discount");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 180, 34));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Voucher");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 73, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Event");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 110, 39, 30));
+        getContentPane().add(voucherTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 101, -1));
 
         eventCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        eventCombobox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eventCombobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventComboboxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(eventCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 101, -1));
 
         applyVoucherButton.setText("Apply");
+        applyVoucherButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         applyVoucherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 applyVoucherButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(applyVoucherButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
 
         applyEventButton.setText("Apply");
+        applyEventButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         applyEventButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 applyEventButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(applyEventButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Received");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 70, -1));
+        getContentPane().add(receivedButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 132, -1));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Exchange");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         OKButton.setText("OK");
+        OKButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         OKButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OKButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(OKButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
+        getContentPane().add(exchangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 132, -1));
 
         paymentButton.setText("Payment");
+        paymentButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         paymentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(paymentButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
 
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Go Back_50px.png"))); // NOI18N
         backButton.setText("Back");
+        backButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         resetEventButton.setText("Reset");
+        resetEventButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         resetEventButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetEventButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(resetEventButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, -1, -1));
 
         resetVoucherButton.setText("Reset");
+        resetVoucherButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         resetVoucherButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetVoucherButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(resetVoucherButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
 
         updateButton.setText("Update bill");
+        updateButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 173, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(backButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                            .addComponent(voucherTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eventCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(applyVoucherButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(resetVoucherButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(applyEventButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(resetEventButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(updateButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(72, 72, 72)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(receivedButton)
-                                    .addComponent(exchangeButton))))
-                        .addGap(29, 29, 29)
-                        .addComponent(OKButton)
-                        .addGap(70, 70, 70)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paymentButton))
-                .addGap(57, 57, 57))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(paymentButton)
-                .addGap(23, 23, 23))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backButton))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(voucherTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(applyVoucherButton)
-                    .addComponent(resetVoucherButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(applyEventButton)
-                    .addComponent(resetEventButton))
-                .addGap(33, 33, 33)
-                .addComponent(updateButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(receivedButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OKButton))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(exchangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Btnhom/Interface/Icon/Screenshot 2021-11-29 164757.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -336,6 +291,10 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         exchangeButton.setText(String.valueOf(Integer.parseInt(receivedButton.getText()) - price));
     }//GEN-LAST:event_OKButtonActionPerformed
 
+    private void eventComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventComboboxActionPerformed
+
     public String setBillDetails() {
         List<Orders> orders = new OrdersDAO().ListOrder(invoiceID);
         String display = "";
@@ -412,6 +371,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton paymentButton;
     private javax.swing.JTextField receivedButton;
