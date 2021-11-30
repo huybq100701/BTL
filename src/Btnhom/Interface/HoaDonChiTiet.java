@@ -33,6 +33,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
         this.accDAO = accDAO;
         this.invoiceID = invoiceID;
         this.tableID = tableID;
+        billTextField.setEditable(false);
         setBillDetails();
         setEventCombobox();
         paymentButton.setEnabled(false);

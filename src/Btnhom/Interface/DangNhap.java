@@ -34,8 +34,6 @@ public class DangNhap extends javax.swing.JFrame {
         signupButton.setBackground(Color.decode("#e59d5c"));
         nameLabel1.setForeground(Color.decode("#524a3a"));
         nameLabel.setForeground(Color.decode("#524a3a"));
-        ImageIcon img = new ImageIcon("logo.jpg");
-        this.setIconImage(img.getImage());
     }
     
     private AccountDAO accDAO = new AccountDAO();
