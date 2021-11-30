@@ -510,6 +510,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
+        txtId.setText("");
+        txtName.setText("");
+        txtDate.setText("");
+        txtAddress.setText("");
+        txtPhoneNum.setText("");
+        txtSalary.setText("");
+        txtId.setEnabled(true);
+        buttonMale.setSelected(false);
+        buttonFemale.setSelected(false);
         myModel = new DefaultTableModel(headers, 0);
         new EmployeeDAO().loadDataToTable(myModel);
         tableInfo.setModel(myModel); 
@@ -535,12 +544,19 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             }
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write("______________EMPLOYEE MANAGEMENT______________\n");
+            bw.write("\t\t\t\t______________EMPLOYEE MANAGEMENT______________\n\n\n");
+            bw.write(String.format("%s %15s %15s %15s %15s %15s %15s %15s\n\n", "ID", "Name", "Gender", "Join Date", "Address"
+                    , "Phone Number", "Position", "Salary"));
             for(int i = 0; i < tableInfo.getRowCount(); i++) {
-                for(int j = 0; j < tableInfo.getColumnCount(); j++) {
-                    bw.write(String.valueOf(tableInfo.getModel().getValueAt(i, j)) + "    ");
-                }
-                bw.write("\n\n");
+                String id = String.valueOf(tableInfo.getModel().getValueAt(i, 0));
+                String name = String.valueOf(tableInfo.getModel().getValueAt(i, 1));
+                String gender = String.valueOf(tableInfo.getModel().getValueAt(i, 2));
+                String joinDate = String.valueOf(tableInfo.getModel().getValueAt(i, 3));
+                String address = String.valueOf(tableInfo.getModel().getValueAt(i, 4));
+                String phoneNum = String.valueOf(tableInfo.getModel().getValueAt(i, 5));
+                String position = String.valueOf(tableInfo.getModel().getValueAt(i, 6));
+                String salary = String.valueOf(tableInfo.getModel().getValueAt(i, 7));
+                bw.write(String.format("%s %15s %15s %15s %15s %15s %15s %15s\n", id, name, gender, joinDate, address, phoneNum, position, salary));
             }
             bw.close();
             fw.close();

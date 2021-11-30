@@ -134,6 +134,11 @@ public class ChuongTrinhKhuyenMai extends javax.swing.JFrame {
                 "Name", "Discount", "Start", "End"
             }
         ));
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 241, 500, 320));
@@ -239,6 +244,17 @@ public class ChuongTrinhKhuyenMai extends javax.swing.JFrame {
         endTextField.setText("yyyy/MM/dd");
         displayTable();
     }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+        int row = table.getSelectedRow();
+        if(row != -1) {
+            eventTextField.setText(table.getValueAt(row, 0).toString());
+            discountTextField.setText(table.getValueAt(row, 1).toString().substring(0, table.getValueAt(row, 1).toString().length() - 1));
+            startTextField.setText(table.getValueAt(row, 2).toString());
+            endTextField.setText(table.getValueAt(row, 3).toString());
+        }
+    }//GEN-LAST:event_tableMouseClicked
     private void displayTable() {
         myModel.setRowCount(0); 
         List<Event> listEvent = new EventDAO().GetListEvent();

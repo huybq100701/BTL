@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -33,6 +34,8 @@ public class DangNhap extends javax.swing.JFrame {
         signupButton.setBackground(Color.decode("#e59d5c"));
         nameLabel1.setForeground(Color.decode("#524a3a"));
         nameLabel.setForeground(Color.decode("#524a3a"));
+        ImageIcon img = new ImageIcon("logo.jpg");
+        this.setIconImage(img.getImage());
     }
     
     private AccountDAO accDAO = new AccountDAO();

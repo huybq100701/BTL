@@ -344,7 +344,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
 
     public String setBillDetails() {
         List<Orders> orders = new OrdersDAO().ListOrder(invoiceID);
-        String display = "**********CHILLIE COFFEE & TEA**********\n";
+        String display = "*****************CHILLIE COFFEE & TEA*****************\n";
         String employee = accDAO.getAccount().getName();
         display += ("Employee: " + employee + "\n\n");
         for(int i = 0; i < orders.size(); i++) {
@@ -359,7 +359,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
             display += String.format("Drink name: %s\n", drinkName);
             display += String.format("Quantity: %d\n", quantity);
             display += String.format("Cost: %d\n", cost);
-            display += "------------------------------\n";
+            display += "----------------------------------------------------------\n";
             if(size.equals("L")) display += String.format("Size: %s x %.1f\n", size, 1.2);
             if(size.equals("XL")) display += String.format("Size: %s x %.1f\n", size, 1.4);
             float hs = (size.equals("M")) ? 1 : size.equals("L") ? 1.2f : 1.4f;
@@ -368,7 +368,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
             int x = (int)(cost * quantity * hs) + t;
             display += (String.valueOf(x) + "\n\n");
         }
-        display += "************************\n";
+        display += "**********************************************************\n";
         String s = String.format("Total: %d\n", new OrdersDAO().totalPrice(invoiceID));
         price = new OrdersDAO().totalPrice(invoiceID);
         display += s;

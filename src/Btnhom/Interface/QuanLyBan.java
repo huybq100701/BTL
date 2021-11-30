@@ -259,7 +259,7 @@ public class QuanLyBan extends javax.swing.JFrame {
         List<Tables> listTable = TablesDAO.getInstance().LoadListTables();
         idSave = listTable.get(row).getTableId();
         soban.setText(table.getValueAt(row, 1) + "");
-        ghichu.setText(table.getValueAt(row, 2) + "");
+        ghichu.setText(table.getValueAt(row, 3) + "");
     }//GEN-LAST:event_tableMouseClicked
 
     private void ghichuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghichuActionPerformed

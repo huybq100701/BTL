@@ -25,7 +25,7 @@ public class EventDAO {
             int affectedRows = pstmt.executeUpdate();
             if(affectedRows > 0) return true;
         } catch (SQLException e) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(EventDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
     }
@@ -41,7 +41,7 @@ public class EventDAO {
                 return rs.getInt("id");
             }
         } catch (SQLException e) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(EventDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return 0;
     }
@@ -57,29 +57,27 @@ public class EventDAO {
                 return rs.getInt("discount");
             }
         } catch (SQLException e) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(EventDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return 0;
     }
         
-    
     public boolean Update(int id, String name, int discount, String start, String end) {
         Connection con = DBUtility.openConnection();
         try {
-            PreparedStatement pstmt = con.prepareStatement("UPDATE `event` SET `name`= ?, `discount` = ? "
-                    + " `start` = ?, `end` = ? WHERE `ID` = ?");
+            PreparedStatement pstmt = con.prepareStatement("UPDATE `event` SET name= ?, discount = ?, "
+                    + " start = ?, end = ? WHERE id = ?");
             pstmt.setString(1, name);
             pstmt.setInt(2, discount);
             pstmt.setString(3, start);
             pstmt.setString(4, end);
             pstmt.setInt(5, id);
-            pstmt.executeUpdate();
             int i = pstmt.executeUpdate();
             if (i > 0) {
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(InvoicesDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -123,7 +121,7 @@ public class EventDAO {
                 myModel.addRow(v);
             }
         } catch (SQLException e) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(EventDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     
@@ -138,7 +136,7 @@ public class EventDAO {
                 return true;
             }
         } catch (SQLException e) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(EventDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
     }
