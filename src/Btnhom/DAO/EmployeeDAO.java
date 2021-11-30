@@ -39,13 +39,11 @@ public class EmployeeDAO {
         return false;
     }
     
-    
     public boolean delete(int id) {
         Connection connection = DBUtility.openConnection();
         try {
             if(new AccountDAO().hasAccount(id)) {
                 new AccountDAO().deleteByEmployeeId(id);
-                return true;
             }
             PreparedStatement pstmt = connection.prepareStatement("DELETE FROM employee WHERE id = ?");
             pstmt.setInt(1, id);
