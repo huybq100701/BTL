@@ -165,6 +165,7 @@ public class QuanLyDoUong extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Choose drink to delete!");
         }
         else {
+            System.out.println(table.getValueAt(row, 1).toString());
             if(new DrinksDAO().delete(table.getValueAt(row, 1).toString())) {
                 JOptionPane.showMessageDialog(this, "Delete successful!");
                 drinkname.setText("");

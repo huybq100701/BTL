@@ -1,4 +1,10 @@
-1    Nguyen Van A    Bàn 1    221400    2021-11-30 19:07:34.0    
+				______________EMPLOYEE MANAGEMENT______________
 
-2    Nguyen Van A    Bàn 2    0    2021-11-30 19:07:46.0    
 
+ID            Name          Gender       Join Date         Address    Phone Number        Position          Salary
+
+1000           ADMIN            Male      2021-10-10          Ha Noi      0123456789         Manager        15000000
+1001    Nguyen Van A            Male      2021-10-10          Ha Noi             123   Counter Staff        10000000
+1002    Nguyen Van B            Male      2021-10-10             abc             123   Counter Staff          100000
+1003    Nguyen Van C          Female      2021-10-10       Hai Phong             123         Barista         1000000
+1004    Nguyen Van D          Female      2021-10-10              HN             123      Supervisor        10000000

@@ -39,6 +39,23 @@ public class EmployeeDAO {
         return false;
     }
     
+    public String getEmployeeNameByID(int id) {
+        Connection connection = DBUtility.openConnection();
+        try {
+            String sql = "SELECT * FROM employee WHERE id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return "";
+    }
+    
     public boolean delete(int id) {
         Connection connection = DBUtility.openConnection();
         try {

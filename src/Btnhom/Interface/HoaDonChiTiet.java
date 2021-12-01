@@ -346,7 +346,7 @@ public class HoaDonChiTiet extends javax.swing.JFrame {
     public String setBillDetails() {
         List<Orders> orders = new OrdersDAO().ListOrder(invoiceID);
         String display = "*****************CHILLIE COFFEE & TEA*****************\n";
-        String employee = accDAO.getAccount().getName();
+        String employee = new EmployeeDAO().getEmployeeNameByID(accDAO.getAccount().getEmployeeId());
         display += ("Employee: " + employee + "\n\n");
         for(int i = 0; i < orders.size(); i++) {
             display += ((i + 1) + ".\n");
